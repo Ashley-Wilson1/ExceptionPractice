@@ -9,9 +9,36 @@ namespace Calc
         public void doSomething()
         {
             int num1, num2, result;
-            num1 = Int32.Parse(textBox1.Text);
-            num2 = Int32.Parse(textBox2.Text);
-            result = num1/num2;
+            try
+            {
+                num1 = Int32.Parse(textBox1.Text);
+                              
+            }
+            catch (FormatException ex) 
+            {
+                textBox1.Text = "Format Error";
+                return;
+            }
+            try
+            {
+  
+                num2 = Int32.Parse(textBox2.Text);
+
+            }
+            catch (FormatException ex)
+            {
+                textBox2.Text = "Format Error";
+                return;
+            }
+            try
+            {
+                result = num1 / num2;
+            }
+            catch(System.DivideByZeroException ex)
+            {
+                textBox1.Text = "Divide by zero error";
+                return ;
+            }
 
             textBox1.Text = "Result = "+result;
         }
