@@ -37,7 +37,8 @@ namespace Calc
             catch(System.DivideByZeroException ex)
             {
                 textBox1.Text = "Divide by zero error";
-                return ;
+                System.InvalidOperationException argEx = new System.InvalidOperationException("this operation isn't allowed");
+                throw argEx;
             }
 
             textBox1.Text = "Result = "+result;
@@ -45,7 +46,15 @@ namespace Calc
 
         private void button1_Click(object sender, EventArgs e)
         {
-            doSomething();
+            try
+            {
+                doSomething();
+            }
+            catch(System.InvalidOperationException ex) 
+            {
+                textBox1.Text = "Divide by zero error!!!!";
+
+            }
         }
     }
 }
